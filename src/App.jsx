@@ -9,10 +9,10 @@ function App() {
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
+        <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
-        <a href="https://react.dev" target="_blank">
+        <a href="https://www.youtube.com/watch?v=WzKJ1Ks3B8Y" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
@@ -22,11 +22,11 @@ function App() {
           count is {count}
         </button>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+          Mute your device don't say I did not warn you bhie
         </p>
       </div>
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+        PLEASE LANG ROLD PAPASARA MI ANI
       </p>
     </>
   )
