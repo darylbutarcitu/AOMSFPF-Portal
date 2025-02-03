@@ -12,10 +12,25 @@
     transition: filter 300ms;
   }
   .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
+    filter: drop-shadow(0 0 2em #fbff02aa);
   }
-  .logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
+  .logo.citu:hover {
+    filter: drop-shadow(0 0 2em #f72500aa);
+  }
+
+  .button {
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    outline: none; 
+    transition: filter 0.3s ease, transform 0.3s ease; 
+  }
+  .button:hover {
+    filter: drop-shadow(0 0 2em #999999aa);
+    transform: scale(1.05);
+  }
+  .button:focus {
+    outline: none;
   }
   
   @keyframes logo-spin {
