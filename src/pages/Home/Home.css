@@ -32,6 +32,24 @@
   .button:focus {
     outline: none;
   }
+
+  @keyframes shakeWiggle {
+    0% { transform: rotate(0deg); }
+    2.5% { transform: rotate(2.5deg); }
+    5% { transform: rotate(-2.5deg); }
+    7.5% { transform: rotate(2.5deg); }
+    10% { transform: rotate(-2.5deg); }
+    12.5% { transform: rotate(2.5deg); }
+    15% { transform: rotate(-2.5deg); }
+    17.5% { transform: rotate(2.5deg); }
+    20% { transform: rotate(-2.5deg); }
+    25% { transform: rotate(0deg); }
+    100% { transform: rotate(0deg); } /* Hold at the final position */
+  }
+  
+  .logo {
+    animation: shakeWiggle 10s ease-in-out infinite; /* Total duration including pause */
+  }
   
   @keyframes logo-spin {
     from {
