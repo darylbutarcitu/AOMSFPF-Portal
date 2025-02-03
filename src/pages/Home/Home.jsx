@@ -1,13 +1,10 @@
 import { useState } from 'react'
-import reactLogo from '../../assets/react.svg'
-import viteLogo from '/vite.svg'
 import './Home.css'
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../configs/firebaseConfig.js";
+import VisitorCounter from "../Tracker/VisitorCounter.jsx";
 
 function Home() {
-  const [count, setCount] = useState(0)
-
   const sendSignalToESP32 = async () => {
     try {
       const ledRef = doc(db, "commands", "LED_SIGNAL");
@@ -39,7 +36,7 @@ function Home() {
         </p>
       </div>
       <p className="read-the-docs">
-        Test: SLAYYY
+        🟢 Current Visitors:  <VisitorCounter />
       </p>
     </>
   )
