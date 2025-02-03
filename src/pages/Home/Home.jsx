@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './Home.css'
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../configs/firebaseConfig.js";
@@ -10,6 +9,8 @@ function Home() {
       const ledRef = doc(db, "commands", "LED_SIGNAL");
       await setDoc(ledRef, { signal: true, timestamp: Date.now() });
       console.log("Signal sent to ESP32");
+      const audio = new Audio("/tweet_sfx.mp3");
+      audio.play();
     } catch (error) {
       console.error("Error sending signal:", error);
     }
