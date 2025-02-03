@@ -49,7 +49,7 @@ function Home() {
               </button>
               <p>
                 <br></br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Team: 13 Research Why
               </p>
             </div>
             <p className="read-the-docs">
