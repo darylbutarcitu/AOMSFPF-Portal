@@ -8,6 +8,7 @@ const LoadingScreen = () => {
       animate={{ opacity: 0 }}
       transition={{ duration: 3, ease: 'easeInOut' }}
     >
+      
       <div className="spinner"></div>
       <style>{`
         .loading-screen {
@@ -22,14 +23,14 @@ const LoadingScreen = () => {
           background-color: rgba(0, 0, 0, 0.7);
           z-index: 9999;
         }
-
+        
         .spinner {
-          border: 5px solid #f3f3f3;
-          border-top: 5px solid #3498db;
+          border: 20px solid #f3f3f3;
+          border-top: 20px solid rgb(219, 177, 52);
           border-radius: 50%;
-          width: 50px;
-          height: 50px;
-          animation: spin 1s linear infinite;
+          width: 100px;
+          height: 100px;
+          animation: spin 0.5s linear infinite;
         }
 
         @keyframes spin {

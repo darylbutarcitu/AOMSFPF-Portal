@@ -43,7 +43,6 @@
     15% { transform: rotate(-2.5deg); }
     17.5% { transform: rotate(2.5deg); }
     20% { transform: rotate(-2.5deg); }
-    25% { transform: rotate(0deg); }
     100% { transform: rotate(0deg); } /* Hold at the final position */
   }
   

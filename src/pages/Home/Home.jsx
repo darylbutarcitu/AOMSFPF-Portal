@@ -28,7 +28,7 @@ function Home() {
     }
   };
 
-  const Content = () => {
+  const Logos = () => {
     return (
       <motion.div
         initial={{ y: '5vh', opacity: 0 }}
@@ -36,12 +36,25 @@ function Home() {
         transition={{ duration: 1.5, ease: 'easeInOut' }}
       >
         <div>
-            <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" target="_blank">
+            <a href="/" target="_blank">
               <img src="/mascot.svg" className="logo" alt="Sisiw Logo" />
             </a>
-            <a href="https://www.youtube.com/watch?v=WzKJ1Ks3B8Y" target="_blank">
+            <a href="/" target="_blank">
               <img src="/cituseal.svg" className="logo citu" alt="CIT-U logo" />
             </a>
+        </div>
+      </motion.div>
+    );
+  };
+
+  const Content = () => {
+    return (
+      <motion.div
+        initial={{ y: '5vh', opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }} 
+        transition={{ duration: 1, ease: 'easeInOut' }}
+      >
+        <div>
             <h1>Automated Odor Mitigation System for Poultry Farms</h1>
             <div className="card">
               <button onClick={sendSignalToESP32} className="button">
@@ -65,7 +78,10 @@ function Home() {
       {isLoading ? (
         <LoadingScreen />
       ) : (
+        <>
+        <Logos />
         <Content />
+        </>
       )}
     </>
   );
