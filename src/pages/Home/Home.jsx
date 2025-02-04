@@ -4,6 +4,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../configs/firebaseConfig.js";
 import VisitorCounter from "../Tracker/VisitorCounter.jsx";
 import LoadingScreen from "../../components/LoadingScreen.jsx";
+import Display from '../Display/Display';
 import { motion } from 'framer-motion';
 
 function Home() {
@@ -56,6 +57,7 @@ function Home() {
       >
         <div>
             <h1>Automated Odor Mitigation System for Poultry Farms</h1>
+            <Display />
             <div className="card">
               <button onClick={sendSignalToESP32} className="button">
                 Ping ESP32
