@@ -56,7 +56,7 @@ function Home() {
         transition={{ duration: 1, ease: 'easeInOut' }}
       >
         <div>
-            <h1>Automated Odor Mitigation System for Poultry Farms</h1>
+            <h1 className="title">Automated Odor Mitigation System for Poultry Farms</h1>
             <Display />
             <div className="card">
               <button onClick={sendSignalToESP32} className="button">
