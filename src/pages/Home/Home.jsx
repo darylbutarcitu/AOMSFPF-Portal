@@ -24,6 +24,7 @@ function Home() {
       console.log("Signal sent to ESP32");
       const audio = new Audio("/tweet_sfx.mp3");
       audio.play();
+      window.confirm("ping");
     } catch (error) {
       console.error("Error sending signal:", error);
     }
