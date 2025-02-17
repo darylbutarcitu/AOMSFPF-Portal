@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './Home.css';
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, onSnapshot  } from "firebase/firestore";
 import { db } from "../../configs/firebaseConfig.js";
 import VisitorCounter from "../Tracker/VisitorCounter.jsx";
 import LoadingScreen from "../../components/LoadingScreen.jsx";
@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 
 function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const [prevStatus, setPrevStatus] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -17,18 +18,52 @@ function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  const sendSignalToESP32 = async () => {
+  const sendWipeSignal = async () => {
     try {
-      const ledRef = doc(db, "commands", "LED_SIGNAL");
-      await setDoc(ledRef, { signal: true, timestamp: Date.now() });
-      console.log("Signal sent to ESP32");
+      const signalRef = doc(db, "commands", "wipe_signal");
+      await setDoc(signalRef, { status: true, timestamp: Date.now() });
+      console.log("Wipe Signal sent to ESP32");
+
+      const line3Ref = doc(db, "display", "ssd1306");
+      await setDoc(line3Ref, { line_3: "Moving sweeper..." }, { merge: true });
+
       const audio = new Audio("/tweet_sfx.mp3");
       audio.play();
-      window.confirm("ping");
+      //window.confirm("Wipe Signal sent to ESP32");
+
+      setTimeout(() => {
+        setDoc(line3Ref, { line_3: "" }, { merge: true });
+        console.log('line_3 cleared');
+      }, 3000);
     } catch (error) {
       console.error("Error sending signal:", error);
     }
   };
+
+  useEffect(() => {
+    const signalRef = doc(db, "commands", "wipe_signal");
+  
+    const unsubscribe = onSnapshot(signalRef, (docSnapshot) => {
+      const status = docSnapshot.data()?.status;
+  
+      if (prevStatus === true && status === false) {
+        console.log('Wipe signal changed from TRUE to FALSE');
+        window.confirm("Sweeping done!");
+  
+        const line3Ref = doc(db, "display", "ssd1306");
+        setDoc(line3Ref, { line_3: "Sweeping completed!" }, { merge: true });
+  
+        setTimeout(() => {
+          const line3Ref = doc(db, "display", "ssd1306");
+          setDoc(line3Ref, { line_3: "" }, { merge: true });
+          console.log('line_3 cleared');
+        }, 3000);
+      }
+      setPrevStatus(status);
+    });
+  
+    return () => unsubscribe();
+  }, [prevStatus]);
 
   const Logos = () => {
     return (
@@ -60,8 +95,8 @@ function Home() {
             <h1 className="title">Automated Odor Mitigation System for Poultry Farms</h1>
             <Display />
             <div className="card">
-              <button onClick={sendSignalToESP32} className="button">
-                Ping ESP32
+              <button onClick={sendWipeSignal} className="button">
+                Move Sweeper
               </button>
               <p>
                 <br></br>
