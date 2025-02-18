@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './Home.css';
-import { doc, setDoc, onSnapshot  } from "firebase/firestore";
+import { doc, setDoc, getDoc, onSnapshot  } from "firebase/firestore";
 import { db } from "../../configs/firebaseConfig.js";
 import VisitorCounter from "../Tracker/VisitorCounter.jsx";
 import LoadingScreen from "../../components/LoadingScreen.jsx";
@@ -21,15 +21,23 @@ function Home() {
   const sendWipeSignal = async () => {
     try {
       const signalRef = doc(db, "commands", "wipe_signal");
-      await setDoc(signalRef, { status: true, timestamp: Date.now() });
-      console.log("Wipe Signal sent to ESP32");
-
       const line3Ref = doc(db, "display", "ssd1306");
-      await setDoc(line3Ref, { line_3: "Moving sweeper..." }, { merge: true });
-
-      const audio = new Audio("/tweet_sfx.mp3");
-      audio.play();
-      //window.confirm("Wipe Signal sent to ESP32");
+      const signalDoc = await getDoc(signalRef);
+      const isBusy = signalDoc.data();
+      let message = "";
+      
+      if (isBusy.isBusyESP) {
+        console.log("ESP32 is busy. Please wait.");
+        message = "Busy/Offline...";
+      } else {
+        setDoc(signalRef, { status: true, timestamp: Date.now() }, { merge: true });
+        console.log("Wipe Signal sent to ESP32");
+        message = "Wipe Signal sent to ESP32";
+        const audio = new Audio("/tweet_sfx.mp3");
+        audio.play();
+      }
+      
+      setDoc(line3Ref, { line_3: message }, { merge: true });
 
       setTimeout(() => {
         setDoc(line3Ref, { line_3: "" }, { merge: true });
