@@ -3,7 +3,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100vh; /* Full viewport height */
     margin: 0;
     background-color: #222; /* Optional: background color */
   }
@@ -17,8 +17,8 @@ body {
   
   /* The screen area (mimicking the SSD1306 OLED screen with the aspect ratio kept) */
   .ssd1306-screen {
-    width: 512px; /* Increased width, keeping the aspect ratio */
-    height: 256px; /* Increased height, keeping the aspect ratio */
+    width: 612px; /* Increased width, keeping the aspect ratio */
+    height: 356px; /* Increased height, keeping the aspect ratio */
     background-color: black; /* OLED screen color */
     color: white;
     font-family: monospace, sans-serif;
@@ -30,6 +30,7 @@ body {
     border: 2px solid #fff; /* White border to mimic the screen's outline */
     padding: 4px;
     box-sizing: border-box;
+    margin-top: 20px;
   }
   
   /* Content inside the screen */

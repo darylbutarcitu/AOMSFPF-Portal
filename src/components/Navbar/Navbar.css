@@ -1,0 +1,138 @@
+.navbar {
+  background-color: #1a1a1a;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  border-bottom: 2px solid #333;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1700px;
+  padding: 0 2rem;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.nav-logo {
+  height: 2.5em;
+  margin-right: 0.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.nav-logo:hover {
+  filter: drop-shadow(0 0 1em #fbff02aa);
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin-left: 2.5rem;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.4rem;
+  padding: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #fdff8a;
+  border-bottom: 2px solid #fdff8a;
+}
+
+/* Mobile Menu Icon */
+.menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  transition: all 0.3s ease;
+  background-color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-container {
+    padding: 0 1rem;
+  }
+  
+  .menu-icon {
+    display: block;
+  }
+  
+  .menu-icon.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .menu-icon.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-icon.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    width: 100%;
+    background-color: #1a1a1a;
+    transition: all 0.5s ease;
+    padding: 0;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .nav-menu.active {
+    left: 0;
+  }
+  
+  .nav-item {
+    margin: 1rem 0;
+    text-align: center;
+  }
+  
+  .nav-link {
+    font-size: 1.2rem;
+    display: block;
+    padding: 1rem;
+  }
+  
+  .nav-link:hover {
+    border-bottom: none;
+    background-color: #333;
+  }
+}
