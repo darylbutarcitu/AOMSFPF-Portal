@@ -18,45 +18,71 @@ function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  const sendWipeSignal = async () => {
+  const sendSignal = async (signalName, successMessage) => {
     try {
-      const signalRef = doc(db, "commands", "wipe_signal");
+      const signalRef = doc(db, "commands", signalName);
       const line3Ref = doc(db, "display", "ssd1306");
-      const signalDoc = await getDoc(signalRef);
+      const espStatusRef = doc(db, "commands", "ESPstatus");
+  
+      const [signalDoc, espStatusDoc] = await Promise.all([
+        getDoc(signalRef),
+        getDoc(espStatusRef),
+      ]);
+  
       let message = "";
-      
-      if (signalDoc.data().isBusyESP) {
+  
+      if (espStatusDoc.data().isBusy) {
         console.log("ESP32 is busy. Please wait.");
         message = "Busy/Offline...";
       } else {
-        await setDoc(signalRef, { status: true, isBusyESP: true, lastModifiedBy: "App", timestamp: Date.now() }, { merge: true });
-        console.log("Wipe Signal sent to ESP32");
-        message = "Wipe Signal sent to ESP32";
+        await setDoc(signalRef, {
+          status: true,
+          lastModifiedBy: "App",
+          timestamp: Date.now(),
+        }, { merge: true });
+  
+        await setDoc(espStatusRef, { isBusy: true }, { merge: true });
+  
+        console.log(`${signalName} signal sent to ESP32`);
+        message = successMessage;
+  
         const audio = new Audio("/tweet_sfx.mp3");
         audio.play();
       }
-      
+  
       await setDoc(line3Ref, { line_3: message }, { merge: true });
   
       setTimeout(async () => {
         const lastModifyDoc = await getDoc(signalRef);
-        if (lastModifyDoc.data().lastModifiedBy === "App" && lastModifyDoc.data().isBusyESP === true) {
-          await setDoc(signalRef, { status: false, isBusyESP: false, lastModifiedBy: "", timestamp: Date.now() }, { merge: true });
+        if (lastModifyDoc.data().lastModifiedBy === "App") {
+          await setDoc(signalRef, {
+            status: false,
+            lastModifiedBy: "",
+            timestamp: Date.now(),
+          }, { merge: true });
+  
+          await setDoc(espStatusRef, { isBusy: false }, { merge: true });
         }
-        console.log('Connection with ESP failed');
-        message = "Connection failed.";
-        setDoc(line3Ref, { line_1: "---", line_2: "---", line_3: message }, { merge: true });
+  
+        // console.log('Connection with ESP failed');
+        // await setDoc(line3Ref, {
+        //   line_1: "---",
+        //   line_2: "---",
+        //   line_3: "---",
+        // }, { merge: true });
+  
       }, 6000);
   
       setTimeout(async () => {
         await setDoc(line3Ref, { line_3: "---" }, { merge: true });
         console.log('line_3 cleared');
       }, 3000);
-      
+  
     } catch (error) {
       console.error("Error sending signal:", error);
     }
   };
+  
   
   useEffect(() => {
     const signalRef = doc(db, "commands", "wipe_signal");
@@ -71,8 +97,8 @@ function Home() {
         console.log('Wipe signal changed from TRUE to FALSE');
         message = "Sweeping completed!";
         setDoc(line3Ref, { line_3: message }, { merge: true });
-        setTimeout(() => {
-          setDoc(line3Ref, { line_3: "" }, { merge: true });
+        setTimeout(async () => {
+          await setDoc(line3Ref, { line_3: "" }, { merge: true });
           console.log('line_3 cleared');
         }, 3000);
       }
@@ -113,9 +139,14 @@ function Home() {
             <h1 className="title">{/*Automated Odor Mitigation System for Poultry Farms*/}</h1>
             <Display />
             <div className="card">
-              <button onClick={sendWipeSignal} className="button">
-                Move Sweeper
+              <div className="button-container">
+              <button onClick={() => sendSignal("wipe_signal", "Wipe Signal sent to ESP32")} className="sweepButton">
+                Sweep
               </button>
+              <button onClick={() => sendSignal("dispense_signal", "Dispense Signal sent to ESP32")} className="dispenseButton">
+                Dispense
+              </button>
+                </div>
               <p>
                 <br></br>
                 Team: 13 Research Why
