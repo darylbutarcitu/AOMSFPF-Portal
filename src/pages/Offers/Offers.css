@@ -1,0 +1,186 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #222; 
+  color: white; 
+  height: 100%;
+}
+
+#root {
+  max-width: 100%; 
+  margin: 0 auto; /* Changed to auto for better centering */
+  padding: 4rem; 
+  text-align: justify;
+  font-size: 1.3rem;
+}
+
+.offers-container {
+  max-width: 1200px; /* Add a max-width to container /
+  margin: 0 auto; / Center the container /
+  padding: 0 20px; / Add padding on sides */
+}
+
+.offers-title {
+  color: white;
+  font-size: 2.5rem; 
+  margin-bottom: 5rem;
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.offers-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.offer-item {
+  display: flex;
+  background-color: 
+#1e1e1e;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 0 10px; /* Add horizontal margin */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.offer-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+}
+
+.offer-icon {
+  flex: 0 0 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 2rem;
+}
+
+.offer-svg {
+  width: 80px;
+  height: 80px;
+
+}
+
+.offer-svg:hover {
+  filter: drop-shadow(0 0 2em #fbff02aa);
+}
+
+.offer-text {
+  flex: 0 0 76%; /* Reduced from 80% to leave some margin /
+  padding-right: 20px; / Add right padding */
+}
+
+.offer-text h2 {
+  color: rgb(248, 229, 84);
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.offer-text p {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  text-align: justify;
+  margin-right: 10px; /* Add right margin to text */
+}
+
+.cta-section {
+  background-color: 
+#1e1e1e;
+  border-radius: 1rem;
+  padding: 3rem;
+  margin: 3rem 10px 0; /* Add horizontal margins */
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.cta-section h2 {
+  color: white;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-section p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 0 20px; /* Add horizontal padding */
+}
+
+.cta-button {
+  border: none;
+  padding: 15px 30px;
+  cursor: pointer;
+  outline: none;
+  transition: filter 0.3s ease, transform 0.3s ease;
+  background-color: rgb(248, 229, 84);
+  color: #222;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.cta-button:hover {
+  filter: drop-shadow(0 0 2em #999999aa);
+  transform: scale(1.1);
+}
+
+.page-content {
+  margin-top: 80px;
+  padding: 2rem; 
+}
+
+/* Animation keyframes from Home.css */
+@keyframes shakeWiggle {
+  0% { transform: rotate(0deg); }
+  2.5% { transform: rotate(2.5deg); }
+  5% { transform: rotate(-2.5deg); }
+  7.5% { transform: rotate(2.5deg); }
+  10% { transform: rotate(-2.5deg); }
+  12.5% { transform: rotate(2.5deg); }
+  15% { transform: rotate(-2.5deg); }
+  17.5% { transform: rotate(2.5deg); }
+  20% { transform: rotate(-2.5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Apply animation to icons */
+.offer-svg {
+  animation: shakeWiggle 10s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .offer-item {
+    flex-direction: column;
+  }
+
+  .offer-icon {
+    padding-right: 0;
+    padding-bottom: 1.5rem;
+  }
+
+  #root {
+    padding: 2rem;
+  }
+
+  .offer-text {
+    padding-right: 10px; /* Smaller padding on mobile */
+  }
+
+  .offer-text p {
+    font-size: 1.3rem;
+    margin-right: 5px; /* Smaller margin on mobile */
+  }
+
+  .cta-section p {
+    padding: 0 10px; /* Smaller padding on mobile */
+  }
+}

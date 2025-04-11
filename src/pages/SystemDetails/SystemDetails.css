@@ -1,0 +1,239 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #222; 
+  color: white; 
+  height: 100%;
+}
+
+.system-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 20px;
+}
+
+.system-title {
+  color: white;
+  font-size: 2.5rem; 
+  margin-bottom: 4rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+/* Overview Section */
+.system-overview-container {
+  background-color: #1e1e1e;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 4rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.system-overview-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+
+.system-header h2 {
+  color: rgb(248, 229, 84);
+  font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.system-subtitle {
+  color: #ccc;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+}
+
+.system-overview p {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+/* Accordion Container */
+.accordion-container {
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Accordion Item */
+.accordion-item {
+  background-color: #1e1e1e;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Accordion Header */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  cursor: pointer;
+  background-color: #2a2a2a;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.accordion-header:hover {
+  background-color: #333;
+}
+
+.accordion-header h2 {
+  margin: 0;
+  color: white;
+  font-size: 1.6rem;
+}
+
+.chevron-icon {
+  color: white;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+/* Accordion Content */
+.accordion-content {
+  padding: 0 2rem 2rem;
+  overflow: hidden;
+}
+
+.components-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.components-list li {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #333;
+}
+
+.components-list li:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.components-list h3 {
+  color: rgb(248, 229, 84);
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.components-list p {
+  color: #e0e0e0;
+  font-size: 1.2rem;
+  margin: 0;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/* System Diagram */
+.system-diagram {
+  background-color: #1e1e1e;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  margin-top: 4rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.system-diagram:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+
+.system-diagram h2 {
+  color: rgb(248, 229, 84);
+  font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.diagram-container {
+  margin: 1.5rem 0;
+}
+
+.diagram-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  border: 1px solid #444;
+}
+
+.diagram-caption {
+  font-style: italic;
+  color: #ccc;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+/* Animations */
+@keyframes shakeWiggle {
+  0% { transform: rotate(0deg); }
+  2.5% { transform: rotate(2.5deg); }
+  5% { transform: rotate(-2.5deg); }
+  7.5% { transform: rotate(2.5deg); }
+  10% { transform: rotate(-2.5deg); }
+  12.5% { transform: rotate(2.5deg); }
+  15% { transform: rotate(-2.5deg); }
+  17.5% { transform: rotate(2.5deg); }
+  20% { transform: rotate(-2.5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .system-container {
+    padding: 1rem 10px;
+  }
+  
+  .system-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .system-overview-container {
+    padding: 1.5rem;
+  }
+  
+  .accordion-header {
+    padding: 1.2rem 1.5rem;
+  }
+
+  .accordion-header h2 {
+    font-size: 1.4rem;
+  }
+  
+  .accordion-content {
+    padding: 0 1.5rem 1.5rem;
+  }
+  
+  .components-list h3 {
+    font-size: 1.2rem;
+  }
+  
+  .components-list p {
+    font-size: 1rem;
+  }
+
+  .system-overview p {
+    font-size: 1.2rem;
+  }
+}
