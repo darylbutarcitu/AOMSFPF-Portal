@@ -23,12 +23,12 @@ const Display = () => {
   }, []);
 
   return (
-    <motion.div
-      initial={{ y: '5vh', opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }} 
-      transition={{ duration: 1, ease: 'easeInOut' }}
-      className="display-container"
-    >
+    // <motion.div
+    //   initial={{ y: '5vh', opacity: 0 }}
+    //   animate={{ y: 0, opacity: 1 }} 
+    //   transition={{ duration: 1, ease: 'easeInOut' }}
+    //   className="display-container"
+    // >
       <div className="ssd1306-screen">
         <div className="ssd1306-content">
           {displayContent.line_1 || "Loading..."} <br />
@@ -37,7 +37,7 @@ const Display = () => {
           {displayContent.line_4 || ""}
         </div>
       </div>
-    </motion.div>
+    // </motion.div>
   );
 };
 
