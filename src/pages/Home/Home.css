@@ -13,25 +13,52 @@
     transition: filter 300ms;
     margin-top: 10px;
   }
+  
   .logo:hover {
     filter: drop-shadow(0 0 2em #fbff02aa);
   }
+
   .logo.citu:hover {
     filter: drop-shadow(0 0 2em #f72500aa);
   }
 
-  .button {
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem; /* adjust spacing as needed */
+    flex-wrap: wrap; /* optional: keeps layout tidy on smaller screens */
+    margin-top: 1rem;
+  }
+  
+  .sweepButton {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     outline: none; 
     transition: filter 0.3s ease, transform 0.3s ease; 
   }
-  .button:hover {
+
+  .sweepButton:hover {
     filter: drop-shadow(0 0 2em #999999aa);
     transform: scale(1.05);
   }
-  .button:focus {
+
+  .sweepButton:focus {
+    outline: none;
+  }
+
+  .dispenseButton {
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    outline: none; 
+    transition: filter 0.3s ease, transform 0.3s ease; 
+  }
+  .dispenseButton:hover {
+    filter: drop-shadow(0 0 2em #999999aa);
+    transform: scale(1.05);
+  }
+  .dispenseButton:focus {
     outline: none;
   }
 
