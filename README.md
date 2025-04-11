@@ -2,7 +2,7 @@
 
 AOMSFPF Portal is a web application that allows users to **view real-time sensor readings** from our **ESP32 setup** and **interact with it** through specific controls. This portal provides a user-friendly interface for monitoring and managing sensor data efficiently.  
 
-🔹 **Live Deployment (v1):** [aomsfp.web.app](https://aomsfp.web.app)  
+🔹 **Live Deployment (v1):** [[aomsfp.web.app](https://aomsfp.web.app)  ](https://aomsfp.firebaseapp.com)
 🔹 **Tech Stack:** React (Vite) ⚛️ + Firebase 🔥 + ESP32 IoT 🌍  
 
 ## Features (TO BE) 
