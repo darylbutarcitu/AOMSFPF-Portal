@@ -1,6 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "../src/pages/Home/Home.jsx";
 import About from "../src/pages/About/About.jsx";
+import Analytics from "../src/pages/Analytics/Analytics.jsx";
 import Offers from "../src/pages/Offers/Offers.jsx";
 import SystemDetails from "../src/pages/SystemDetails/SystemDetails.jsx";
 import Navbar from "../src/components/Navbar/Navbar.jsx";
@@ -16,7 +17,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/offers" element={<Offers />} />
           <Route path="/about" element={<About />} />          
-          <Route path="/system" element={<SystemDetails />} />    
+          <Route path="/system" element={<SystemDetails />} /> 
+          <Route path="/analytics" element={<Analytics />} />   
         </Routes>
       </div>
       <Footer />
