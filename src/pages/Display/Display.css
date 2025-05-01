@@ -17,29 +17,26 @@ body {
 
 /* The screen area (mimicking the SSD1306 OLED screen with the aspect ratio kept) */
 .ssd1306-screen {
-  width: 90%; /* Use percentage for responsiveness */
-  max-width: 612px; /* Limit the maximum width */
-  height: auto; /* Allow height to adjust automatically */
-  aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+  display: inline-block; /* Allow the screen to adjust dynamically */
   background-color: black; /* OLED screen color */
   color: white;
   font-family: monospace, sans-serif;
   font-size: 1.5vw; /* Use viewport width for font size */
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 4px;
   border: 2px solid #fff; /* White border to mimic the screen's outline */
   padding: 4px;
   box-sizing: border-box;
+  overflow: hidden; /* Prevent content overflow */
+  white-space: nowrap; /* Prevent text wrapping */
+  width: auto; /* Allow width to adjust dynamically */
+  max-width: 100%; /* Ensure it doesn't exceed the viewport width */
 }
 
 /* Content inside the screen */
 .ssd1306-content {
-  width: 100%;
-  text-align: left; /* Justify text to the left */
-  white-space: pre-wrap;
-  overflow-wrap: break-word;
+  display: inline-block; /* Allow content to adjust dynamically */
+  text-align: left; /* Align text to the left */
+  white-space: nowrap; /* Prevent text wrapping */
   padding: 10px;
   padding-left: 20px; /* Extra padding on the left */
   font-size: 1em; /* Ensure text scales properly */
@@ -49,27 +46,25 @@ body {
 /* Media Query for Tablets and Smaller Screens */
 @media (max-width: 768px) {
   .ssd1306-screen {
-      width: 95%; /* Adjust width for smaller screens */
-      font-size: 2vw; /* Adjust font size for smaller screens */
+    font-size: 2vw; /* Adjust font size for smaller screens */
   }
 
   .ssd1306-content {
-      padding: 8px; /* Reduce padding */
-      padding-left: 15px;
-      font-size: 0.9em; /* Slightly smaller font size */
+    padding: 8px; /* Reduce padding */
+    padding-left: 15px;
+    font-size: 0.9em; /* Slightly smaller font size */
   }
 }
 
 /* Media Query for Mobile Devices */
 @media (max-width: 480px) {
   .ssd1306-screen {
-      width: 100%; /* Full width for mobile devices */
-      font-size: 2.5vw; /* Further adjust font size */
+    font-size: 2.5vw; /* Further adjust font size */
   }
 
   .ssd1306-content {
-      padding: 5px; /* Further reduce padding */
-      padding-left: 10px;
-      font-size: 0.8em; /* Smaller font size for mobile */
+    padding: 5px; /* Further reduce padding */
+    padding-left: 10px;
+    font-size: 0.8em; /* Smaller font size for mobile */
   }
 }

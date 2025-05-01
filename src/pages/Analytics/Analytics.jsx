@@ -93,6 +93,20 @@ const Analytics = () => {
   
             return `${datasetLabel}: ${value} (${status})`;
           },
+          labelTextColor: function (context) {
+            const value = context.raw;
+            const datasetLabel = context.dataset.label;
+  
+            if (datasetLabel === "Ammonia PPM" && getAmmoniaStatus(value) === "CRITICAL") {
+              return "red"; // Set tooltip text color to red for CRITICAL Ammonia PPM
+            }
+  
+            if (datasetLabel === "Rice Hulls Level" && getRiceHullsStatus(value) === "LOW") {
+              return "red"; // Set tooltip text color to red for LOW Rice Hulls Level
+            }
+  
+            return "white"; // Default tooltip text color
+          },
         },
       },
     },
