@@ -95,11 +95,6 @@ function Home() {
   
   const Logos = () => {
     return (
-      // <motion.div
-      //   initial={{ y: '5vh', opacity: 0 }}
-      //   animate={{ y: 0, opacity: 1 }} 
-      //   transition={{ duration: 1.5, ease: 'easeInOut' }}
-      // >
         <div>
             <a href="/" target="_blank">
               <img src="/mascot.svg" className="logo" alt="Sisiw Logo" />
@@ -115,7 +110,7 @@ function Home() {
   const Content = () => {
     return (
         <div>
-            <h1 className="title">Automated Odor Mitigation System for Poultry Farms</h1>
+            <h1 className="title"></h1>
             <Display />
             <div className="card">
               <div className="button-container">
