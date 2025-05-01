@@ -12,7 +12,7 @@ const Display = () => {
   useEffect(() => {
     console.log("Setting up Firebase Realtime Database listener...");
     const logsRef = ref(rtdb, "logs"); // Reference to the "logs" collection
-    const logsQuery = query(logsRef, orderByChild("timestamp"), limitToLast(1)); // Fetch the latest log entry
+    const logsQuery = query(logsRef, orderByChild("timestamp"), limitToLast(1)); 
 
     const unsubscribe = onValue(logsQuery, (snapshot) => {
       console.log("Firebase Realtime Database snapshot received:", snapshot.val());
@@ -21,41 +21,29 @@ const Display = () => {
         snapshot.forEach((childSnapshot) => {
           logs.push(childSnapshot.val());
         });
-
-        console.log("Fetched logs:", logs);
-
-        const latestLog = logs[0]; // Get the latest log entry
-        console.log("Latest log entry:", latestLog);
-
-        // Convert the `timestamp` to a readable format
+        const latestLog = logs[0];
         const readableTime = latestLog.timestamp
-          ? new Date(latestLog.timestamp).toLocaleString() // Same as in Analytics.jsx
+          ? new Date(latestLog.timestamp).toLocaleString() 
           : "Invalid Timestamp";
 
-        // Handle invalid or placeholder values for riceHullsLevel
-        const riceHullsLevel =
-          latestLog.riceHullsLevel >= -1 ? latestLog.riceHullsLevel.toFixed(2) : "N/A";
-
-        // Check if valid data is present (no placeholder or fallback values)
+        const riceHullsLevel = latestLog.riceHullsLevel >= -1 ? latestLog.riceHullsLevel.toFixed(2) : "N/A";
         const isValidData =
           latestLog.ammoniaPPM !== undefined &&
           latestLog.riceHullsLevel >= -1 &&
           latestLog.timestamp !== undefined;
 
-        console.log("Is valid data:", isValidData);
-
         setDisplayContent((prevContent) => ({
           ...prevContent,
-          ammoniaPPM: latestLog.ammoniaPPM.toFixed(2), // Limit to 2 decimal places
+          ammoniaPPM: latestLog.ammoniaPPM.toFixed(2), 
           riceHullsLevel: riceHullsLevel,
-          readableTime: readableTime, // Use the readable timestamp
+          readableTime: readableTime, 
         }));
 
-        setLastUpdateTime(Date.now()); // Update the last update time
-        setIsESPActive(isValidData); // Mark ESP as active only if data is valid
+        setLastUpdateTime(Date.now()); 
+        setIsESPActive(isValidData); 
       } else {
         console.log("No logs found!");
-        setIsESPActive(false); // Mark ESP as inactive if no logs are found
+        setIsESPActive(false); 
       }
     });
 
@@ -132,10 +120,6 @@ const Display = () => {
             <br />
             <br />
             {`Timestamp: ${displayContent.readableTime || "undefined"}`} <br />
-            {displayContent.line_4 || ""}
-            <br />
-            <br />
-            {displayContent.line_5 || ""}
           </>
         ) : (
           <>ESP has stopped sending data</>
