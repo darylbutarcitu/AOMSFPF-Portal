@@ -114,4 +114,36 @@ body {
 .page-content {
   margin-top: 80px;
 }
+
+.notification-dropdown {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ffcc00;
+  color: #222;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  font-family: Arial, sans-serif;
+}
+
+.notification-dropdown p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.notification-dropdown button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #222;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.notification-dropdown button:hover {
+  background-color: #444;
+}
   
