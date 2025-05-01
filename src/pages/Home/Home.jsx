@@ -21,7 +21,7 @@ function Home() {
   const sendSignal = async (signalName, successMessage) => {
     try {
       const signalRef = doc(db, "commands", signalName);
-      const line3Ref = doc(db, "display", "ssd1306");
+      const line5Ref = doc(db, "display", "ssd1306");
       const espStatusRef = doc(db, "commands", "ESPstatus");
   
       const [signalDoc, espStatusDoc] = await Promise.all([
@@ -30,9 +30,7 @@ function Home() {
       ]);
   
       let message = "";
-  
       if (espStatusDoc.data().isBusy) {
-        console.log("ESP32 is busy. Please wait.");
         message = "Busy/Offline...";
       } else {
         await setDoc(signalRef, {
@@ -42,16 +40,12 @@ function Home() {
         }, { merge: true });
   
         await setDoc(espStatusRef, { isBusy: true }, { merge: true });
-  
-        console.log(`${signalName} signal sent to ESP32`);
         message = successMessage;
-  
         const audio = new Audio("/tweet_sfx.mp3");
         audio.play();
       }
   
-      await setDoc(line3Ref, { line_3: message }, { merge: true });
-  
+      await setDoc(line5Ref, { line_5: message }, { merge: true });
       setTimeout(async () => {
         const lastModifyDoc = await getDoc(signalRef);
         if (lastModifyDoc.data().lastModifiedBy === "App") {
@@ -63,26 +57,16 @@ function Home() {
   
           await setDoc(espStatusRef, { isBusy: false }, { merge: true });
         }
-  
-        // console.log('Connection with ESP failed');
-        // await setDoc(line3Ref, {
-        //   line_1: "---",
-        //   line_2: "---",
-        //   line_3: "---",
-        // }, { merge: true });
-  
       }, 6000);
   
       setTimeout(async () => {
-        await setDoc(line3Ref, { line_3: "---" }, { merge: true });
-        console.log('line_3 cleared');
+        await setDoc(line5Ref, { line_5: "" }, { merge: true });
       }, 3000);
-  
     } catch (error) {
       console.error("Error sending signal:", error);
     }
   };
-  
+
   
   useEffect(() => {
     const signalRef = doc(db, "commands", "wipe_signal");
@@ -90,16 +74,16 @@ function Home() {
     const unsubscribe = onSnapshot(signalRef, (docSnapshot) => {
       const status = docSnapshot.data()?.status;
       const lastModifiedBy = docSnapshot.data()?.lastModifiedBy;
-      const line3Ref = doc(db, "display", "ssd1306");
+      const line5Ref = doc(db, "display", "ssd1306");
       let message = "";
   
       if (prevStatus === true && status === false && lastModifiedBy === "ESP") {
         console.log('Wipe signal changed from TRUE to FALSE');
         message = "Sweeping completed!";
-        setDoc(line3Ref, { line_3: message }, { merge: true });
+        setDoc(line5Ref, { line_5: message }, { merge: true });
         setTimeout(async () => {
-          await setDoc(line3Ref, { line_3: "" }, { merge: true });
-          console.log('line_3 cleared');
+          await setDoc(line5Ref, { line_5: "" }, { merge: true });
+          console.log('line_5 cleared');
         }, 3000);
       }
   
@@ -130,13 +114,8 @@ function Home() {
 
   const Content = () => {
     return (
-      // <motion.div
-      //   initial={{ y: '5vh', opacity: 0 }}
-      //   animate={{ y: 0, opacity: 1 }} 
-      //   transition={{ duration: 1, ease: 'easeInOut' }}
-      // >
         <div>
-            <h1 className="title">{/*Automated Odor Mitigation System for Poultry Farms*/}</h1>
+            <h1 className="title">Automated Odor Mitigation System for Poultry Farms</h1>
             <Display />
             <div className="card">
               <div className="button-container">
@@ -156,10 +135,8 @@ function Home() {
               🟢 Current Visitors:  <VisitorCounter />
             </p>
           </div>
-      //</motion.div>
     );
   };
-
   return (
     <>
       {isLoading ? (

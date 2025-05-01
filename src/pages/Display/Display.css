@@ -1,43 +1,41 @@
-/* Center the entire page */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
+    height: 100vh; 
     margin: 0;
-    background-color: #222; /* Optional: background color */
+    background-color: #222; 
   }
   
-  /* Center the motion div */
   .display-container {
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
-  /* The screen area (mimicking the SSD1306 OLED screen with the aspect ratio kept) */
   .ssd1306-screen {
-    width: 612px; /* Increased width, keeping the aspect ratio */
-    height: 356px; /* Increased height, keeping the aspect ratio */
-    background-color: black; /* OLED screen color */
+    width: 612px; 
+    height: 356px; 
+    background-color: black; 
     color: white;
     font-family: monospace, sans-serif;
-    font-size: 30px; /* Adjust font size for readability */
+    font-size: 30px; 
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 4px;
-    border: 2px solid #fff; /* White border to mimic the screen's outline */
+    border: 2px solid #fff; 
     padding: 4px;
     box-sizing: border-box;
     margin-top: 20px;
   }
   
-  /* Content inside the screen */
   .ssd1306-content {
     width: 100%;
-    text-align: center;
+    text-align: left; 
     white-space: pre-wrap;
     overflow-wrap: break-word;
+    padding: 10px;
+    padding-left: 20px; 
   }
   

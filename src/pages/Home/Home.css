@@ -3,7 +3,7 @@
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
-    background-color: #222; /* Optional: background color */
+    background-color: #222;
   }
 
   .logo {
@@ -25,8 +25,8 @@
   .button-container {
     display: flex;
     justify-content: center;
-    gap: 1rem; /* adjust spacing as needed */
-    flex-wrap: wrap; /* optional: keeps layout tidy on smaller screens */
+    gap: 1rem; 
+    flex-wrap: wrap; 
     margin-top: 1rem;
   }
   
@@ -72,11 +72,11 @@
     15% { transform: rotate(-2.5deg); }
     17.5% { transform: rotate(2.5deg); }
     20% { transform: rotate(-2.5deg); }
-    100% { transform: rotate(0deg); } /* Hold at the final position */
+    100% { transform: rotate(0deg); } 
   }
   
   .logo {
-    animation: shakeWiggle 10s ease-in-out infinite; /* Total duration including pause */
+    animation: shakeWiggle 10s ease-in-out infinite; 
   }
   
   @keyframes logo-spin {

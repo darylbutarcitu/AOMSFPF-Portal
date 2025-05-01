@@ -1,0 +1,40 @@
+.analytics-container {
+    max-width: 1400px; /* Increased max width */
+    margin: 0 auto;
+    padding: 2rem;
+    color: white;
+    text-align: center;
+}
+  
+.analytics-title {
+    font-size: 3rem; /* Increased font size */
+    margin-bottom: 2rem;
+    color: rgb(248, 229, 84);
+}
+  
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem; /* Increased gap between charts */
+}
+  
+.chart {
+    background-color: #1e1e1e;
+    border-radius: 1rem;
+    padding: 3rem; /* Increased padding */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; /* Ensure full width */
+    height: 500px; /* Increased height */
+}
+  
+.chart:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+  
+.chart h2 {
+    font-size: 2rem; /* Increased font size */
+    margin-bottom: 1rem;
+    color: rgb(84, 229, 248);
+}
