@@ -4,7 +4,7 @@ import { db, rtdb } from "../../configs/firebaseConfig.js"; // Import Realtime D
 import { ref, query, orderByChild, limitToLast, onValue } from "firebase/database";
 import { doc, getDoc } from "firebase/firestore"; // Import Firestore methods
 
-const Display = () => {
+const Display = ({ onRiceHullsStatusChange }) => {
   const [displayContent, setDisplayContent] = useState({});
   const [lastUpdateTime, setLastUpdateTime] = useState(null); // Track the last update time
   const [isESPActive, setIsESPActive] = useState(false); // Track if ESP is active
@@ -41,6 +41,12 @@ const Display = () => {
 
         setLastUpdateTime(Date.now()); 
         setIsESPActive(isValidData); 
+
+        // Notify Home.jsx about the rice hull status
+        if (onRiceHullsStatusChange) {
+          const status = getRiceHullsStatus(riceHullsLevel);
+          onRiceHullsStatusChange(status);
+        }
       } else {
         console.log("No logs found!");
         setIsESPActive(false); 
@@ -51,7 +57,7 @@ const Display = () => {
       console.log("Cleaning up Firebase listener...");
       unsubscribe();
     };
-  }, []);
+  }, [onRiceHullsStatusChange]);
 
   useEffect(() => {
     const fetchFirestoreData = async () => {
