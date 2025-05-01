@@ -1,40 +1,72 @@
 .analytics-container {
-    max-width: 1400px; /* Increased max width */
+    max-width: 1400px; /* Keep the max width for larger screens */
     margin: 0 auto;
     padding: 2rem;
     color: white;
     text-align: center;
 }
-  
+
 .analytics-title {
-    font-size: 3rem; /* Increased font size */
+    font-size: 3rem; /* Keep the font size for larger screens */
     margin-bottom: 2rem;
     color: rgb(248, 229, 84);
 }
-  
+
 .chart-container {
     display: flex;
-    flex-direction: column;
-    gap: 3rem; /* Increased gap between charts */
+    flex-direction: column; /* Stack charts vertically */
+    gap: 3rem; /* Space between charts */
 }
-  
+
 .chart {
     background-color: #1e1e1e;
     border-radius: 1rem;
-    padding: 3rem; /* Increased padding */
+    padding: 2rem; /* Adjust padding for better fit */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 100%; /* Ensure full width */
-    height: 500px; /* Increased height */
+    width: 100%; /* Ensure the chart takes full width */
+    height: 400px; /* Adjust height for better responsiveness */
+    overflow: hidden; /* Prevent overflow issues */
 }
-  
+
 .chart:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
 }
-  
+
 .chart h2 {
-    font-size: 2rem; /* Increased font size */
+    font-size: 1.8rem; /* Slightly smaller font size for titles */
     margin-bottom: 1rem;
     color: rgb(84, 229, 248);
+}
+
+/* Responsive Design for Tablets */
+@media (max-width: 768px) {
+    .analytics-container {
+        padding: 1.5rem; /* Reduce padding for smaller screens */
+    }
+
+    .chart {
+        height: 300px; /* Reduce chart height for tablets */
+        padding: 1.5rem; /* Adjust padding */
+    }
+
+    .chart h2 {
+        font-size: 1.5rem; /* Reduce title size */
+    }
+}
+
+/* Responsive Design for Mobile Devices */
+@media (max-width: 480px) {
+    .analytics-container {
+        padding: 1rem; /* Further reduce padding for mobile */
+    }
+
+    .chart {
+        height: 250px; /* Reduce chart height for mobile */
+        padding: 1rem; /* Adjust padding */
+    }
+
+    .chart h2 {
+        font-size: 1.2rem; /* Further reduce title size */
+    }
 }

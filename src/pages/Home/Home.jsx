@@ -34,8 +34,8 @@ function Home() {
     setShowNotification(false);
     setNotificationCooldown(true); // Start cooldown
     setTimeout(() => {
-      setNotificationCooldown(false); // Reset cooldown after 30 seconds
-    }, 30000);
+      setNotificationCooldown(false); // Reset cooldown after 180 seconds
+    }, 180000);
   };
 
   const sendSignal = async (signalName, successMessage) => {
@@ -141,13 +141,6 @@ function Home() {
                   Dispense
                 </button>
               </div>
-              {/* Notification Dropdown */}
-              {showNotification && (
-                <div className="notification-dropdown">
-                  <p>{notificationMessage}</p>
-                  <button onClick={dismissNotification}>Dismiss</button>
-                </div>
-              )}
               <p>
                 <br></br>
                 Team: 13 Research Why
@@ -165,6 +158,13 @@ function Home() {
         <LoadingScreen />
       ) : (
         <>
+        {/* Notification Dropdown */}
+        {showNotification && (
+          <div className="notification-dropdown">
+            <p>{notificationMessage}</p>
+            <button onClick={dismissNotification}>Dismiss</button>
+          </div>
+        )}
         <Logos />
         <Content />
         </>
